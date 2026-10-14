@@ -1,0 +1,21 @@
+{
+  "run_id": "heldout-1",
+  "started": "2026-10-13T23:39:18+00:00",
+  "models": [
+    "nemotron-ultra"
+  ],
+  "split": "heldout",
+  "trials": 3,
+  "cache": false,
+  "max_repairs": 3,
+  "fingerprint": "038221c78182",
+  "autoformat": true,
+  "specs": [
+    "alert-rule-evaluator",
+    "artifact-registry-metadata",
+    "cluster-inventory-api",
+    "rate-limiter-service",
+    "task-scheduler-status-api"
+  ],
+  "heldout_lock_sha": "adeb605bfb3b6439f240563054d4bdaf879686eb63b6ebbaa2eb44f73bdb9721"
+}

@@ -1,0 +1,148 @@
+{
+  "spec": "log-aggregator",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "vet",
+  "first_failure_category": "vet",
+  "final_failure_category": null,
+  "tokens_in": 3977,
+  "tokens_out": 3892,
+  "llm_time_s": 140.22,
+  "wall_time_s": 147.26,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.026531791023444384,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4025767089915462,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.18196170800365508,
+          "output_excerpt": "# log_aggregator\n# [log_aggregator]\nvet: ./handlers_test.go:144:13: undefined: io",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.024576333991717547,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4619338340708055,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19771262496942654,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.9235505420365371,
+          "output_excerpt": "ok  \tlog_aggregator\t0.439s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.43601704202592373,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0004992919857613742,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.006606082955840975,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

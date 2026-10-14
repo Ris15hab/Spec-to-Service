@@ -1,0 +1,21 @@
+name: feature-flag-service
+description: Stores feature flags with percentage rollout and evaluates them per user.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: PUT,  path: "/flags/{name}", description: "body {enabled: bool, rollout_percent: int 0..100}; 200 or 201; 400 if rollout_percent out of range, enabled missing, or malformed JSON" }
+  - { method: GET,  path: "/flags/{name}", description: "200 the flag; 404 if unknown" }
+  - { method: GET,  path: /flags, description: "200 JSON list of all flags" }
+  - { method: GET,  path: /evaluate, description: "query params flag and user (both required, else 400). 404 if flag unknown. 200 {enabled: bool}: false if the flag is disabled, else true iff fnv32a(user) % 100 < rollout_percent" }
+metrics:
+  - { name: flags_total, type: gauge, help: "Number of flags defined" }
+  - { name: flag_evaluations_total, type: counter, help: "Successful evaluations" }
+behaviors:
+  - "Evaluation is deterministic: the same user always gets the same answer for the same flag"
+probes:
+  - { method: PUT, path: /flags/beta, body: '{"enabled": true, "rollout_percent": 100}', expect_status: [200, 201] }
+  - { method: PUT, path: /flags/bad, body: '{"enabled": true, "rollout_percent": 150}', expect_status: 400 }
+  - { method: GET, path: /flags/beta, expect_status: 200 }
+  - { method: GET, path: "/evaluate?flag=beta&user=u1", expect_status: 200 }
+  - { method: GET, path: "/evaluate?flag=nope&user=u1", expect_status: 404 }
+  - { method: GET, path: "/evaluate?flag=beta", expect_status: 400 }

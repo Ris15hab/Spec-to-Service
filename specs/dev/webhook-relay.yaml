@@ -1,0 +1,19 @@
+name: webhook-relay
+description: Accepts webhook requests and forwards them to a target URL with retries.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /webhooks, description: "body {url: absolute http(s) URL, payload: any JSON}; 202 when queued for delivery; 400 for missing/invalid url or malformed JSON" }
+  - { method: GET,  path: /webhooks/stats, description: "200 {delivered: n, failed: n, pending: n}" }
+metrics:
+  - { name: webhook_deliveries_total, type: counter, help: "Successful deliveries" }
+  - { name: webhook_failures_total, type: counter, help: "Deliveries that failed after all retries" }
+  - { name: webhook_pending, type: gauge, help: "Deliveries queued or in progress" }
+behaviors:
+  - "Delivery is asynchronous: POSTs the payload as JSON to url; retries up to 3 attempts total on network error or non-2xx, with a short backoff (<= 100ms in tests; keep it configurable via a package variable)"
+  - "Tests use httptest.NewServer as the delivery target"
+probes:
+  - { method: POST, path: /webhooks, body: '{"payload": {}}', expect_status: 400 }
+  - { method: POST, path: /webhooks, body: '{"url": "not-a-url", "payload": {}}', expect_status: 400 }
+  - { method: POST, path: /webhooks, body: '{"url": "http://127.0.0.1:1/x", "payload": {"a": 1}}', expect_status: 202 }
+  - { method: GET,  path: /webhooks/stats, expect_status: 200 }

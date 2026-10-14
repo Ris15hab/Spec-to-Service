@@ -1,0 +1,190 @@
+{
+  "spec": "node-heartbeat-monitor",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 2,
+  "first_failure_stage": "vet",
+  "first_failure_category": "vet",
+  "final_failure_category": null,
+  "tokens_in": 9194,
+  "tokens_out": 7869,
+  "llm_time_s": 183.46,
+  "wall_time_s": 191.3,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [
+        "handlers.go"
+      ],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007616041984874755,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.5540064999950118,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.1991407920140773,
+          "output_excerpt": "# node_heartbeat_monitor\n# [node_heartbeat_monitor]\nvet: ./handlers_test.go:143:2: undefined: os",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.005490249954164028,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.4827635000110604,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.15663291700184345,
+          "output_excerpt": "# node_heartbeat_monitor\n# [node_heartbeat_monitor]\nvet: ./handlers_test.go:220:14: undefined: s",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007507292029913515,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.7091126249870285,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.30112291703699157,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 2.5634181670029648,
+          "output_excerpt": "ok  \tnode_heartbeat_monitor\t1.976s",
+          "failure_category": null,
+          "detail": {
+            "tests": 9
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.427429832983762,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0008502919808961451,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.2971492500510067,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 3
+}

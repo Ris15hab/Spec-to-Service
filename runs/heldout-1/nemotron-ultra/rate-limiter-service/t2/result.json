@@ -1,0 +1,154 @@
+{
+  "spec": "rate-limiter-service",
+  "split": "heldout",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "test",
+  "first_failure_category": "test_failure",
+  "final_failure_category": null,
+  "tokens_in": 5388,
+  "tokens_out": 13963,
+  "llm_time_s": 211.79,
+  "wall_time_s": 220.99,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.012141791987232864,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 2.2040568339871243,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.34666504204506055,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 2.145943542011082,
+          "output_excerpt": "--- FAIL: TestBucketInspection (0.00s)\n    handlers_test.go:129: expected tokens=4, got 4.000073417\nFAIL\nFAIL\trate_limiter_service\t1.558s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 9
+          }
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007791417010594159,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3265595409902744,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.1936405409942381,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 2.0085603750194423,
+          "output_excerpt": "ok  \trate_limiter_service\t1.534s",
+          "failure_category": null,
+          "detail": {
+            "tests": 9
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.4327306250343099,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.00033312500454485416,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.3574941660044715,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 2
+}

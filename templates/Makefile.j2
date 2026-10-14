@@ -1,0 +1,9 @@
+.PHONY: build test run docker
+build:
+	go build -o {{ name }} .
+test:
+	go test ./... -count=1
+run: build
+	PORT=8080 ./{{ name }}
+docker:
+	docker build -t {{ name }}:latest .

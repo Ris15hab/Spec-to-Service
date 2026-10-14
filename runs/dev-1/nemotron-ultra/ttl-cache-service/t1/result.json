@@ -1,0 +1,132 @@
+{
+  "spec": "ttl-cache-service",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "format",
+  "first_failure_category": "format",
+  "final_failure_category": null,
+  "tokens_in": 4722,
+  "tokens_out": 4693,
+  "llm_time_s": 119.9,
+  "wall_time_s": 126.49,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.019976124982349575,
+          "output_excerpt": "files need gofmt:\nhandlers.go",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.022905292047653347,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.6409925409825519,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.2036437090137042,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 2.62475145800272,
+          "output_excerpt": "ok  \tttl_cache_service\t2.155s",
+          "failure_category": null,
+          "detail": {
+            "tests": 6
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.5471650830004364,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0006440409924834967,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.006345667003188282,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

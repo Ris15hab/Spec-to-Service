@@ -1,0 +1,136 @@
+{
+  "spec": "feature-flag-service",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "build",
+  "first_failure_category": "compile_error",
+  "final_failure_category": null,
+  "tokens_in": 5329,
+  "tokens_out": 6284,
+  "llm_time_s": 154.71,
+  "wall_time_s": 158.67,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008472291985526681,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.43404679192462936,
+          "output_excerpt": "# feature_flag_service\n./handlers.go:5:2: \"errors\" imported and not used",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.0058626249665394425,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4462418740149587,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.18741395795950666,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.8781649579759687,
+          "output_excerpt": "ok  \tfeature_flag_service\t0.441s",
+          "failure_category": null,
+          "detail": {
+            "tests": 6
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.4560092920437455,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0006049579824320972,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.43973608303349465,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

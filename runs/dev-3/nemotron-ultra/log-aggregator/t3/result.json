@@ -1,0 +1,252 @@
+{
+  "spec": "log-aggregator",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "probe",
+  "first_failure_category": "probe_health",
+  "final_failure_category": "test_failure",
+  "tokens_in": 10892,
+  "tokens_out": 6601,
+  "llm_time_s": 159.88,
+  "wall_time_s": 170.11,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "probe",
+      "category": "probe_health",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.005274416005704552,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.6567112070624717,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.24014083296060562,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 1.309677625016775,
+          "output_excerpt": "ok  \tlog_aggregator\t0.782s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "failed",
+          "duration": 0.6303817079751752,
+          "output_excerpt": "service did not answer /health in time (exit=1)\n2026/10/13 16:59:17 listen: listen tcp :53443: bind: address already in use",
+          "failure_category": "probe_health",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007909666979685426,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4725221259868704,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.21341029205359519,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.7742907909560017,
+          "output_excerpt": "--- FAIL: TestPostLogsAccepted (0.00s)\npanic: pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers.go:52) conflicts with pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/main.go:20):\n\tGET /health matches the same requests as GET /health [recovered, repanicked]\n\ngoroutine 34 [running]:\ntesting.tRunner.func1.2({0x1036936a8, 0x43bf2e9e210})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2125 +0x1a0\ntesting.tRunner.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2128 +0x2c8\npanic({0x1036936a8?, 0x43bf2e9e210?})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/runtime/panic.go:859 +0x120\nnet/http.(*ServeMux).register(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2977\nnet/http.(*ServeMux).HandleFunc(0x1036e34e0?, {0x10329dc24?, 0x10329b740?}, 0x5?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2951 +0x74\nlog_aggregator.registerRoutes(0x43bf2eb0000)\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers.go:52 +0xec\nlog_aggregator.newServer()\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/main.go:25 +0x124\nlog_aggregator.TestPostLogsAccepted(0x43bf2eaa248)\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers_test.go:12 +0x28\ntesting.tRunner(0x43bf2eaa248, 0x103784278)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\tlog_aggregator\t0.336s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "probe",
+      "category": "probe_health",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.009032375004608184,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.747798917000182,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.16728658397914842,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.6684614999685436,
+          "output_excerpt": "ok  \tlog_aggregator\t0.246s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "failed",
+          "duration": 0.3080830000108108,
+          "output_excerpt": "service did not answer /health in time (exit=1)\n2026/10/13 16:59:45 listen: listen tcp :53470: bind: address already in use",
+          "failure_category": "probe_health",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007917582988739014,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.5785078330081888,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.22419170895591378,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 1.0305115839582868,
+          "output_excerpt": "--- FAIL: TestPostLogsAccepted (0.00s)\npanic: pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers.go:52) conflicts with pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/main.go:20):\n\tGET /health matches the same requests as GET /health [recovered, repanicked]\n\ngoroutine 5 [running]:\ntesting.tRunner.func1.2({0x1035bf6a8, 0x521c5c5f0480})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2125 +0x1a0\ntesting.tRunner.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2128 +0x2c8\npanic({0x1035bf6a8?, 0x521c5c5f0480?})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/runtime/panic.go:859 +0x120\nnet/http.(*ServeMux).register(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2977\nnet/http.(*ServeMux).HandleFunc(0x10360f4e0?, {0x1031c9ba4?, 0x1031c76c0?}, 0x5?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2951 +0x74\nlog_aggregator.registerRoutes(0x521c5c6660c0)\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers.go:52 +0xec\nlog_aggregator.newServer()\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/main.go:25 +0x124\nlog_aggregator.TestPostLogsAccepted(0x521c5c67e248)\n\t<repo>/runs/dev-3/nemotron-ultra/log-aggregator/t3/project/handlers_test.go:12 +0x28\ntesting.tRunner(0x521c5c67e248, 0x1036b0278)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\tlog_aggregator\t0.545s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 3
+}

@@ -1,0 +1,215 @@
+{
+  "autoformat": [
+    "yes"
+  ],
+  "caching": [
+    "False"
+  ],
+  "fingerprints": [
+    "038221c78182"
+  ],
+  "first_failure": {
+    "nemotron-ultra": {
+      "compile_error": 15,
+      "docs_mismatch": 2,
+      "format": 3,
+      "parse_error": 1,
+      "probe_health": 1,
+      "test_failure": 3,
+      "timeout": 1,
+      "vet": 12
+    },
+    "nemotron-ultra (unrepaired final)": {
+      "probe_health": 1,
+      "test_failure": 3
+    }
+  },
+  "mock_tables": {},
+  "n_real": 45,
+  "n_runs_total": 45,
+  "per_spec": {
+    "alert-rule-evaluator": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          2
+        ]
+      },
+      "split": "heldout"
+    },
+    "artifact-registry-metadata": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          1,
+          3
+        ]
+      },
+      "split": "heldout"
+    },
+    "cluster-inventory-api": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "heldout"
+    },
+    "config-diff": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "config-validator": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          1,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "disk-usage-exporter": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          1,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "feature-flag-service": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "gpu-job-watcher": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          1,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "job-queue-api": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "log-aggregator": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          2,
+          2
+        ]
+      },
+      "split": "dev"
+    },
+    "node-heartbeat-monitor": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "rate-limiter-service": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          3
+        ]
+      },
+      "split": "heldout"
+    },
+    "task-scheduler-status-api": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          2
+        ]
+      },
+      "split": "heldout"
+    },
+    "ttl-cache-service": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          1,
+          3
+        ]
+      },
+      "split": "dev"
+    },
+    "webhook-relay": {
+      "models": {
+        "nemotron-ultra": [
+          3,
+          0,
+          2
+        ]
+      },
+      "split": "dev"
+    }
+  },
+  "runs": [
+    "dev-3",
+    "heldout-1"
+  ],
+  "skipped": {},
+  "tables": {
+    "nemotron-ultra|dev": {
+      "final_pass_pct": 93.3,
+      "mean_repairs": 1.23,
+      "mean_tokens": 11200.63,
+      "mean_wall_s": 134.25,
+      "n_runs": 30,
+      "pass_at_1_pct": 20.0,
+      "pass_at_1_per_trial_range": [
+        10.0,
+        30.0
+      ],
+      "trials": 3
+    },
+    "nemotron-ultra|heldout": {
+      "final_pass_pct": 86.7,
+      "mean_repairs": 1.87,
+      "mean_tokens": 18684.8,
+      "mean_wall_s": 197.31,
+      "n_runs": 15,
+      "pass_at_1_pct": 6.7,
+      "pass_at_1_per_trial_range": [
+        0.0,
+        20.0
+      ],
+      "trials": 3
+    }
+  }
+}

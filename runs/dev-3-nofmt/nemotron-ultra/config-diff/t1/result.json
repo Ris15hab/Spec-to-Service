@@ -1,0 +1,175 @@
+{
+  "spec": "config-diff",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 2,
+  "first_failure_stage": "format",
+  "first_failure_category": "format",
+  "final_failure_category": null,
+  "tokens_in": 5663,
+  "tokens_out": 5236,
+  "llm_time_s": 176.48,
+  "wall_time_s": 182.02,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.018375332991126925,
+          "output_excerpt": "files need gofmt:\nhandlers.go",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.02256754203699529,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3979798749787733,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.18417274998500943,
+          "output_excerpt": "# config_diff\n# [config_diff]\nvet: ./handlers_test.go:5:2: \"io\" imported and not used",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.024454500002320856,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.8429234169889241,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.4208777080057189,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 1.0561762920115143,
+          "output_excerpt": "ok  \tconfig_diff\t0.423s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.47217795898905024,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0004783750046044588,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.003368582983966917,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

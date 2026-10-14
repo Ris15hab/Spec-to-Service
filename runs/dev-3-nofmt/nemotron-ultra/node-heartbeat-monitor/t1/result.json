@@ -1,0 +1,226 @@
+{
+  "spec": "node-heartbeat-monitor",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 3,
+  "first_failure_stage": "vet",
+  "first_failure_category": "vet",
+  "final_failure_category": null,
+  "tokens_in": 12381,
+  "tokens_out": 11242,
+  "llm_time_s": 398.36,
+  "wall_time_s": 409.13,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.024025833001360297,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.5844524999847636,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.19298070902004838,
+          "output_excerpt": "# node_heartbeat_monitor\n# [node_heartbeat_monitor]\nvet: ./handlers_test.go:137:2: undefined: os",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.019607292022556067,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.369877917051781,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.19068629201501608,
+          "output_excerpt": "# node_heartbeat_monitor\n# [node_heartbeat_monitor]\nvet: ./handlers_test.go:192:14: undefined: s",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.023466583050321788,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.4015324588981457,
+          "output_excerpt": "# node_heartbeat_monitor\n./handlers.go:4:2: \"context\" imported and not used",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.02406633395003155,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.444368873955682,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.18819074996281415,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 2.3832606250070967,
+          "output_excerpt": "ok  \tnode_heartbeat_monitor\t1.939s",
+          "failure_category": null,
+          "detail": {
+            "tests": 5
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.43049766594776884,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0005443750414997339,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.006160999997518957,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

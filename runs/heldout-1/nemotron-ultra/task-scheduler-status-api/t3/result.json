@@ -1,0 +1,218 @@
+{
+  "spec": "task-scheduler-status-api",
+  "split": "heldout",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 3,
+  "first_failure_stage": "format",
+  "first_failure_category": "format",
+  "final_failure_category": null,
+  "tokens_in": 20454,
+  "tokens_out": 18186,
+  "llm_time_s": 520.44,
+  "wall_time_s": 527.71,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "gofmt_fixed": [
+        "handlers.go"
+      ],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.008417125034611672,
+          "output_excerpt": "files need gofmt:\nhandlers_test.go:319:1: imports must appear before other declarations",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008485500002279878,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.531346166972071,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.20263704197714105,
+          "output_excerpt": "# task_scheduler_status_api\n# [task_scheduler_status_api]\nvet: ./handlers_test.go:181:2: undefined: req",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008590707962866873,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.534065207990352,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.2032119589857757,
+          "output_excerpt": "# task_scheduler_status_api\n# [task_scheduler_status_api]\nvet: ./handlers_test.go:10:2: \"time\" imported and not used",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008071707969065756,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.481366500025615,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.23044595797546208,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 1.0806253750342876,
+          "output_excerpt": "ok  \ttask_scheduler_status_api\t0.525s",
+          "failure_category": null,
+          "detail": {
+            "tests": 6
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.43503525003325194,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0005944169824942946,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.28622654103673995,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 3
+}

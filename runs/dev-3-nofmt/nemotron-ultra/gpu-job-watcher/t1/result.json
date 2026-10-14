@@ -1,0 +1,105 @@
+{
+  "spec": "gpu-job-watcher",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": true,
+  "final_pass": true,
+  "repairs_used": 0,
+  "first_failure_stage": null,
+  "first_failure_category": null,
+  "final_failure_category": null,
+  "tokens_in": 942,
+  "tokens_out": 3262,
+  "llm_time_s": 104.34,
+  "wall_time_s": 107.45,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.017914416966959834,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4857745830668136,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19373962498502806,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.8550157090066932,
+          "output_excerpt": "ok  \tgpu_job_watcher\t0.428s",
+          "failure_category": null,
+          "detail": {
+            "tests": 7
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.537843584024813,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.00047633302165195346,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.0063393329619430006,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

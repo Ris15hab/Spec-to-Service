@@ -1,0 +1,136 @@
+{
+  "spec": "ttl-cache-service",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "parse",
+  "first_failure_category": "parse_error",
+  "final_failure_category": "compile_error",
+  "tokens_in": 11140,
+  "tokens_out": 11365,
+  "llm_time_s": 316.21,
+  "wall_time_s": 866.27,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "parse",
+      "category": "parse_error",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "failed",
+          "duration": 0,
+          "output_excerpt": "file 'metrics.go' is owned by the template and must not be written",
+          "failure_category": "parse_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.02597625000635162,
+          "output_excerpt": "files need gofmt:\nhandlers.go",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.02186441601952538,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.4070264999754727,
+          "output_excerpt": "# ttl_cache_service\n./handlers.go:110:3: undefined: promHandler",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.021110249974299222,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.4344935000408441,
+          "output_excerpt": "# ttl_cache_service\n./handlers.go:110:3: undefined: PromHandler",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

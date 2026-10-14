@@ -1,0 +1,234 @@
+{
+  "spec": "task-scheduler-status-api",
+  "split": "heldout",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "vet",
+  "first_failure_category": "vet",
+  "final_failure_category": "test_failure",
+  "tokens_in": 17886,
+  "tokens_out": 12788,
+  "llm_time_s": 164.96,
+  "wall_time_s": 172.32,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007337499991990626,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.5523344170069322,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.15810491697629914,
+          "output_excerpt": "# task_scheduler_status_api\n# [task_scheduler_status_api]\nvet: ./handlers_test.go:16:60: undefined: strings",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007479999971110374,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.49751516699325293,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.1555060829850845,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.8000760409631766,
+          "output_excerpt": "--- FAIL: TestNextRunComputation (0.00s)\n    --- FAIL: TestNextRunComputation/specific_minute_5_from_00:05 (0.00s)\n        handlers_test.go:182: expected next=2026-01-01T01:05:00Z, got 2026-01-01T00:15:00Z\nFAIL\nFAIL\ttask_scheduler_status_api\t0.399s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 6
+          }
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "probe",
+      "category": "probe_health",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.006472916982602328,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.5873547500232235,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.23991466703591868,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 1.0419891669880599,
+          "output_excerpt": "ok  \ttask_scheduler_status_api\t0.520s",
+          "failure_category": null,
+          "detail": {
+            "tests": 6
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "failed",
+          "duration": 0.625320749997627,
+          "output_excerpt": "service did not answer /health in time (exit=1)\n2026/10/13 16:59:17 listen: listen tcp :53438: bind: address already in use",
+          "failure_category": "probe_health",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.005779416998848319,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.5572234159917571,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.17452900001080707,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.7459005829878151,
+          "output_excerpt": "--- FAIL: TestCreateAndListSchedules (0.00s)\npanic: pattern \"GET /health\" (registered at <repo>/runs/heldout-1/nemotron-ultra/task-scheduler-status-api/t2/project/handlers.go:135) conflicts with pattern \"GET /health\" (registered at <repo>/runs/heldout-1/nemotron-ultra/task-scheduler-status-api/t2/project/main.go:20):\n\tGET /health matches the same requests as GET /health [recovered, repanicked]\n\ngoroutine 2 [running]:\ntesting.tRunner.func1.2({0x102f07940, 0x37f4f6f86220})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2125 +0x1a0\ntesting.tRunner.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2128 +0x2c8\npanic({0x102f07940?, 0x37f4f6f86220?})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/runtime/panic.go:859 +0x120\nnet/http.(*ServeMux).register(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2977\nnet/http.(*ServeMux).HandleFunc(0x10?, {0x102b0ebe4?, 0x37f4f6fec000?}, 0x102b0f371?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2951 +0x74\ntask_scheduler_status_api.registerRoutes(0x37f4f6fec000)\n\t<repo>/runs/heldout-1/nemotron-ultra/task-scheduler-status-api/t2/project/handlers.go:135 +0x80\ntask_scheduler_status_api.newServer()\n\t<repo>/runs/heldout-1/nemotron-ultra/task-scheduler-status-api/t2/project/main.go:25 +0x124\ntask_scheduler_status_api.TestCreateAndListSchedules(0x37f4f6fe6248)\n\t<repo>/runs/heldout-1/nemotron-ultra/task-scheduler-status-api/t2/project/handlers_test.go:12 +0x28\ntesting.tRunner(0x37f4f6fe6248, 0x102ff8940)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\ttask_scheduler_status_api\t0.342s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 6
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 2
+}

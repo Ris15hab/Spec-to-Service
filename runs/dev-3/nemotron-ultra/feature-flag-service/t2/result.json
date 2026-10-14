@@ -1,0 +1,180 @@
+{
+  "spec": "feature-flag-service",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 2,
+  "first_failure_stage": "build",
+  "first_failure_category": "compile_error",
+  "final_failure_category": null,
+  "tokens_in": 8556,
+  "tokens_out": 7081,
+  "llm_time_s": 95.84,
+  "wall_time_s": 101.12,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.006415915966499597,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.486859999014996,
+          "output_excerpt": "# feature_flag_service\n./handlers.go:5:2: \"errors\" imported and not used\n./handlers.go:7:2: \"strconv\" imported and not used\n./handlers.go:94:29: invalid operation: (hash % 100) < flag.RolloutPercent (mismatched types uint32 and int)",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.0076021659770049155,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3935275010298938,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.1867856250028126,
+          "output_excerpt": "# feature_flag_service\n# [feature_flag_service]\nvet: ./handlers_test.go:5:2: \"io\" imported and not used",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.0072934579802677035,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.339799540990498,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.195922665996477,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.7818830420146696,
+          "output_excerpt": "ok  \tfeature_flag_service\t0.337s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.43015854101395234,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.000547999981790781,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.2736392079968937,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 2
+}

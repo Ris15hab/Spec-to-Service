@@ -1,0 +1,157 @@
+{
+  "spec": "gpu-job-watcher",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "test",
+  "first_failure_category": "timeout",
+  "final_failure_category": null,
+  "tokens_in": 4937,
+  "tokens_out": 3366,
+  "llm_time_s": 85.66,
+  "wall_time_s": 136.05,
+  "skipped": [
+    "manifests:hadolint",
+    "manifests:kubeconform"
+  ],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "timeout",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.03874987497692928,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.2843533339328133,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.2027111669885926,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 45.920066124992445,
+          "output_excerpt": "panic: test timed out after 45s\n\trunning tests:\n\t\tTestPostJobsValidReturns201 (45s)\n\ngoroutine 5 [running]:\ntesting.(*M).startAlarm.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2961 +0x2c4\ncreated by time.goFunc\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/time/sleep.go:182 +0x38\n\ngoroutine 1 [chan receive]:\ntesting.(*T).Run(0x50a2ff61e008, {0x101139e60?, 0x50a2ff575a88?}, 0x101618068)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2268 +0x3cc\ntesting.runTests.func1(0x50a2ff61e008)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2744 +0x38\ntesting.tRunner(0x50a2ff61e008, 0x50a2ff575bb8)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ntesting.runTests({0x101133222, 0xf}, {0x101133222, 0xf}, 0x50a2ff3f42d0, {0x1016767b0, 0x4, 0x4}, {0x0?, 0x50a2ff468540?, ...})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2742 +0x400\ntesting.(*M).Run(0x50a2ff61a000)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2602 +0x578\nmain.main()\n\t_testmain.go:52 +0x80\n\ngoroutine 4 [sync.Mutex.Lock]:\ninternal/sync.runtime_SemacquireMutex(0xf006806e0?, 0x80?, 0x10371c108?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/runtime/sema.go:95 +0x28\ninternal/sync.(*Mutex).lockSlow(0x10167f370)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/internal/sync/mutex.go:149 +0x174\ninternal/sync.(*Mutex).Lock(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/internal/sync/mutex.go:70\nsync.(*Mutex).Lock(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/sync/mutex.go:46\ngpu_job_watcher.(*JobStore).QueuedCount(0x10167f370)\n\t<repo>/out/m3-gpu/project/handlers.go:44 +0x7c\ngpu_job_watcher.(*JobStore).updateMetrics(0x10167f370)\n\t<repo>/out/m3-gpu/project/handlers.go:56 +0x24\ngpu_job_watcher.(*JobStore).Add(0x10167f370, 0x50a2ff470720)\n\t<repo>/out/m3-gpu/project/handlers.go:30 +0xe4\ngpu_job_watcher.handlePostJobs({0x101613bd0, 0x50a2ff406c00}, 0x50a2ff3e4780)\n\t<repo>/out/m3-gpu/project/handlers.go:101 +0xd0\nnet/http.HandlerFunc.ServeHTTP(0x50a2ff602240?, {0x101613bd0?, 0x50a2ff406c00?}, 0x100db4a6c?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2358 +0x38\nnet/http.(*ServeMux).ServeHTTP(0x38?, {0x101613bd0, 0x50a2ff406c00}, 0x50a2ff3e4780)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2923 +0x194\ngpu_job_watcher.TestPostJobsValidReturns201(0x50a2ff61e6c8)\n\t<repo>/out/m3-gpu/project/handlers_test.go:35 +0x21c\ntesting.tRunner(0x50a2ff61e6c8, 0x101618068)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\tgpu_job_watcher\t45.468s\nFAIL",
+          "failure_category": "timeout",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.02374016703106463,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3476972930366173,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.1881722080288455,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.8568826249684207,
+          "output_excerpt": "ok  \tgpu_job_watcher\t0.415s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.45671566703822464,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0008356249891221523,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.006240124988835305,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": [
+              "hadolint",
+              "kubeconform"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

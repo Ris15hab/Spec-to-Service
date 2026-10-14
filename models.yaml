@@ -1,0 +1,47 @@
+# Provider configs. Model IDs change: the client checks the provider's /models
+# catalog at startup and fails with a clear message if the ID is missing.
+mock:
+  provider: mock
+  behavior: [good]
+mock-flaky:            # first answer has a compile error, repair fixes it (demo/tests)
+  provider: mock
+  behavior: [compile_error, good]
+nemotron-ultra:
+  provider: openai_compat
+  base_url: https://integrate.api.nvidia.com/v1
+  model_id: nvidia/nemotron-3-ultra-550b-a55b  # 253b-v1 is listed but 404s for this account
+  api_key_env: NVIDIA_API_KEY
+  rpm: 35
+nemotron-super:
+  provider: openai_compat
+  base_url: https://integrate.api.nvidia.com/v1
+  model_id: nvidia/nemotron-3-super-120b-a12b  # 49b-v1 not in catalog on 2026-10-13
+  api_key_env: NVIDIA_API_KEY
+  rpm: 35
+gemini-flash:          # confirm current Flash ID against the catalog (unverified)
+  provider: openai_compat
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  model_id: gemini-2.5-flash
+  api_key_env: GEMINI_API_KEY
+  rpm: 10
+claude-sonnet:         # optional, off by default; Anthropic's OpenAI-compatible endpoint
+  provider: openai_compat
+  base_url: https://api.anthropic.com/v1/
+  model_id: claude-sonnet-5-5
+  api_key_env: ANTHROPIC_API_KEY
+  rpm: 40
+  enabled: false
+claude-haiku:          # optional, cheap for development
+  provider: openai_compat
+  base_url: https://api.anthropic.com/v1/
+  model_id: claude-haiku-5-5
+  api_key_env: ANTHROPIC_API_KEY
+  rpm: 40
+  enabled: false
+local:                 # EXAMPLE ONLY, UNTESTED: any OpenAI-compatible server (vLLM/Ollama)
+  provider: openai_compat
+  base_url: http://localhost:8000/v1
+  model_id: your-model
+  api_key_env: LOCAL_API_KEY
+  rpm: 600
+  enabled: false

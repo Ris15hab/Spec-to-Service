@@ -1,0 +1,15 @@
+name: disk-usage-exporter
+description: Reads filesystem statistics and exposes them over HTTP and as metrics.
+endpoints:
+  - { method: GET, path: /health }
+  - { method: GET, path: /metrics }
+  - { method: GET, path: /disk, description: "query param path (required). 200 {path, total_bytes, free_bytes, used_percent}; 400 if path missing; 404 if the path does not exist. Use syscall.Statfs and convert every field with uint64(...) so it compiles on both linux and darwin" }
+metrics:
+  - { name: disk_used_percent, type: gauge, help: "Used percent of the root filesystem" }
+  - { name: disk_free_bytes, type: gauge, help: "Free bytes of the root filesystem" }
+behaviors:
+  - "A background goroutine refreshes the two gauges for path / every 10 seconds, and once at startup"
+probes:
+  - { method: GET, path: "/disk?path=/", expect_status: 200 }
+  - { method: GET, path: /disk, expect_status: 400 }
+  - { method: GET, path: "/disk?path=/definitely/not/here", expect_status: 404 }

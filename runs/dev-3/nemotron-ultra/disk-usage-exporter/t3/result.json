@@ -1,0 +1,170 @@
+{
+  "spec": "disk-usage-exporter",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "docs",
+  "first_failure_category": "docs_mismatch",
+  "final_failure_category": null,
+  "tokens_in": 2854,
+  "tokens_out": 1878,
+  "llm_time_s": 24.73,
+  "wall_time_s": 29.49,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "docs",
+      "category": "docs_mismatch",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007352540967985988,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4669520410243422,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.18900554097490385,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.7657439170288853,
+          "output_excerpt": "ok  \tdisk_usage_exporter\t0.347s",
+          "failure_category": null,
+          "detail": {
+            "tests": 3
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.42988858302123845,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "failed",
+          "duration": 0.0010252079810015857,
+          "output_excerpt": "endpoint GET /disk is in the spec but not documented\ndocumented endpoint GET /disk?path=<path> does not exist (status 404)",
+          "failure_category": "docs_mismatch",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008360500039998442,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 0.46502591704484075,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.13427491701440886,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.5644700000411831,
+          "output_excerpt": "ok  \tdisk_usage_exporter\t0.252s",
+          "failure_category": null,
+          "detail": {
+            "tests": 3
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.3233510830323212,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0013954159803688526,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.30426024994812906,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 3
+}

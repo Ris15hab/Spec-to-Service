@@ -1,0 +1,20 @@
+name: node-heartbeat-monitor
+description: Nodes post heartbeats; a node is stale if it has not been heard from recently.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /heartbeat, description: "body {node: non-empty string}; 204 on success; 400 if node missing or malformed JSON" }
+  - { method: GET,  path: /nodes, description: "200 JSON list of {node, status: healthy|stale, last_seen: RFC3339}" }
+  - { method: GET,  path: "/nodes/{node}", description: "200 one node object; 404 if unknown" }
+metrics:
+  - { name: nodes_healthy, type: gauge, help: "Nodes with a recent heartbeat" }
+  - { name: nodes_stale, type: gauge, help: "Nodes with no recent heartbeat" }
+behaviors:
+  - "A node is stale when its last heartbeat is older than STALE_AFTER_SECONDS (env var, default 30)"
+  - "A background goroutine recomputes the two gauges every second; stop it cleanly (no goroutine required to stop for tests)"
+probes:
+  - { method: POST, path: /heartbeat, body: '{"node": "n1"}', expect_status: [200, 204] }
+  - { method: POST, path: /heartbeat, body: '{}', expect_status: 400 }
+  - { method: GET,  path: /nodes, expect_status: 200 }
+  - { method: GET,  path: /nodes/n1, expect_status: 200 }
+  - { method: GET,  path: /nodes/unknown, expect_status: 404 }

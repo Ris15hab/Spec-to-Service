@@ -1,0 +1,5 @@
+openai
+pyyaml
+jinja2
+pytest
+rich

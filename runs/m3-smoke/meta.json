@@ -1,0 +1,1 @@
+{"run_id":"m3-smoke","models":["nemotron-ultra"],"split":"dev","trials":1,"cache":false,"fingerprint":"smoke","specs":["gpu-job-watcher","config-validator"]}

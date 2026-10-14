@@ -1,0 +1,25 @@
+{
+  "run_id": "dev-3",
+  "started": "2026-10-13T18:06:22+00:00",
+  "models": [
+    "nemotron-ultra"
+  ],
+  "split": "dev",
+  "trials": 1,
+  "cache": false,
+  "max_repairs": 3,
+  "fingerprint": "3e5b3f8bdda0",
+  "specs": [
+    "config-diff",
+    "config-validator",
+    "disk-usage-exporter",
+    "feature-flag-service",
+    "gpu-job-watcher",
+    "job-queue-api",
+    "log-aggregator",
+    "node-heartbeat-monitor",
+    "ttl-cache-service",
+    "webhook-relay"
+  ],
+  "heldout_lock_sha": "adeb605bfb3b6439f240563054d4bdaf879686eb63b6ebbaa2eb44f73bdb9721"
+}

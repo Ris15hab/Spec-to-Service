@@ -1,0 +1,162 @@
+{
+  "spec": "webhook-relay",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "format",
+  "first_failure_category": "format",
+  "final_failure_category": "test_failure",
+  "tokens_in": 13221,
+  "tokens_out": 9566,
+  "llm_time_s": 276.28,
+  "wall_time_s": 282.24,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.02751945797353983,
+          "output_excerpt": "files need gofmt:\nhandlers.go:212:1: imports must appear before other declarations\nhandlers_test.go:231:1: imports must appear before other declarations",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.021404083003289998,
+          "output_excerpt": "files need gofmt:\nhandlers.go",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.020147625007666647,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.43396808399120346,
+          "output_excerpt": "# webhook_relay\n./handlers.go:203:4: no new variables on left side of :=\n./handlers.go:203:7: cannot use copy(p, n.bytes[n.pos:]) (value of type int) as *nopCloser value in assignment\n./handlers.go:204:2: invalid operation: n.pos += n (mismatched types int and *nopCloser)\n./handlers.go:205:9: cannot use n (variable of type *nopCloser) as int value in return statement",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.01979970798129216,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4278350000386126,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19314595795003697,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 2.165887249982916,
+          "output_excerpt": "--- FAIL: TestPostWebhooksRetryOnFailure (0.50s)\n    handlers_test.go:153: expected delivered=1, got 2\n--- FAIL: TestPostWebhooksFailureAfterRetries (0.50s)\n    handlers_test.go:200: expected delivered=0, got 2\n--- FAIL: TestGetWebhookStats (0.00s)\n    handlers_test.go:227: expected all zeros, got {Delivered:2 Failed:1 Pending:0}\nFAIL\nFAIL\twebhook_relay\t1.680s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 7
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

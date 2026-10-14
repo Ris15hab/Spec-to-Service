@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-diff
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: "8080"
+spec:
+  selector:
+    app: config-diff
+  ports:
+    - port: 80
+      targetPort: 8080

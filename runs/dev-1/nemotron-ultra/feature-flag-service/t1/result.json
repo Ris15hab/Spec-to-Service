@@ -1,0 +1,212 @@
+{
+  "spec": "feature-flag-service",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "vet",
+  "first_failure_category": "vet",
+  "final_failure_category": "test_failure",
+  "tokens_in": 13343,
+  "tokens_out": 8166,
+  "llm_time_s": 297.02,
+  "wall_time_s": 304.89,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.017698415962513536,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3232318329974078,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.18551845900947228,
+          "output_excerpt": "# feature_flag_service\n# [feature_flag_service]\nvet: ./handlers_test.go:172:13: undefined: io",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.022302917030174285,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4310902089928277,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.18391850002808496,
+          "output_excerpt": "# feature_flag_service\n# [feature_flag_service]\nvet: ./handlers_test.go:4:2: \"bytes\" imported and not used",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.015263375011272728,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3421212089597248,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19794400001410395,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.9236699580214918,
+          "output_excerpt": "--- FAIL: TestPutAndGetFlag (0.00s)\n    handlers_test.go:24: expected 201, got 400\n    handlers_test.go:32: expected 200, got 404\n    handlers_test.go:37: unexpected flag: {Name: Enabled:false RolloutPercent:0}\n--- FAIL: TestEvaluateFlag (0.00s)\n    handlers_test.go:86: setup failed: 400\n--- FAIL: TestListFlags (0.00s)\n    handlers_test.go:140: setup failed: 400\nFAIL\nFAIL\tfeature_flag_service\t0.441s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.019782541960012168,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.0662066250224598,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19461324997246265,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.8340536669711582,
+          "output_excerpt": "--- FAIL: TestEvaluateFlag (0.00s)\n    handlers_test.go:86: setup failed: 200\n--- FAIL: TestListFlags (0.00s)\n    handlers_test.go:153: expected 2 flags, got 3\nFAIL\nFAIL\tfeature_flag_service\t0.400s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

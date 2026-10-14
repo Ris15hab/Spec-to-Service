@@ -1,0 +1,22 @@
+name: artifact-registry-metadata
+description: Stores metadata (not the blobs) for versioned build artifacts.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /artifacts, description: "body {name, version, sha256: 64 lowercase hex chars, size_bytes: int >= 0}; 201; 409 if name+version exists; 400 if any field missing or invalid or malformed JSON" }
+  - { method: GET,  path: /artifacts, description: "200 JSON list of all artifacts" }
+  - { method: GET,  path: "/artifacts/{name}", description: "200 JSON list of all versions of that artifact; 404 if none" }
+  - { method: GET,  path: "/artifacts/{name}/{version}", description: "200 one artifact; 404 if unknown" }
+metrics:
+  - { name: artifacts_total, type: gauge, help: "Stored artifact versions" }
+  - { name: artifact_uploads_total, type: counter, help: "Accepted registrations" }
+behaviors:
+  - "Same name with a different version is allowed"
+probes:
+  - { method: POST, path: /artifacts, body: '{"name": "svc", "version": "1.0.0", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "size_bytes": 10}', expect_status: 201 }
+  - { method: POST, path: /artifacts, body: '{"name": "svc", "version": "1.0.0", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "size_bytes": 10}', expect_status: 409 }
+  - { method: POST, path: /artifacts, body: '{"name": "svc", "version": "1.0.1", "sha256": "xyz", "size_bytes": 10}', expect_status: 400 }
+  - { method: GET,  path: /artifacts/svc, expect_status: 200 }
+  - { method: GET,  path: /artifacts/svc/1.0.0, expect_status: 200 }
+  - { method: GET,  path: /artifacts/nope, expect_status: 404 }
+  - { method: GET,  path: /artifacts/svc/9.9.9, expect_status: 404 }

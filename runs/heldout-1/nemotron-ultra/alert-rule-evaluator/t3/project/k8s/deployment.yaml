@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alert-rule-evaluator
+  labels:
+    app: alert-rule-evaluator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alert-rule-evaluator
+  template:
+    metadata:
+      labels:
+        app: alert-rule-evaluator
+    spec:
+      containers:
+        - name: alert-rule-evaluator
+          image: alert-rule-evaluator:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 500m, memory: 128Mi}

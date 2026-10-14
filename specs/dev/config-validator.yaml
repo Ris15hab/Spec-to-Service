@@ -1,0 +1,17 @@
+name: config-validator
+description: Validates service configs submitted as JSON and reports every rule violation.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /validate, description: "body {name: string, replicas: int, port: int}. Rules: name non-empty; replicas 1..100; port 1..65535. 200 {valid:true, errors:[]} when ok; 422 {valid:false, errors:[<one string per violated rule>]} otherwise; 400 for malformed JSON" }
+metrics:
+  - { name: config_validations_total, type: counter, help: "Validation requests" }
+  - { name: config_validation_failures_total, type: counter, help: "Requests that failed validation" }
+behaviors:
+  - "Every violated rule is reported, not just the first"
+  - "Failure counter increments only for 422 responses"
+probes:
+  - { method: POST, path: /validate, body: '{"name": "api", "replicas": 3, "port": 8080}', expect_status: 200 }
+  - { method: POST, path: /validate, body: '{"name": "api", "replicas": 0, "port": 8080}', expect_status: 422 }
+  - { method: POST, path: /validate, body: '{"name": "", "replicas": 500, "port": 0}', expect_status: 422 }
+  - { method: POST, path: /validate, body: 'not json', expect_status: 400 }

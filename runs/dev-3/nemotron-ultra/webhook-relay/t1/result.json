@@ -1,0 +1,166 @@
+{
+  "spec": "webhook-relay",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "parse",
+  "first_failure_category": "parse_error",
+  "final_failure_category": "probe_health",
+  "tokens_in": 11245,
+  "tokens_out": 12805,
+  "llm_time_s": 351.65,
+  "wall_time_s": 355.77,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "parse",
+      "category": "parse_error",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "failed",
+          "duration": 0,
+          "output_excerpt": "file 'metrics.go' is owned by the template and must not be written",
+          "failure_category": "parse_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "format",
+      "category": "format",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "failed",
+          "duration": 0.00960558297811076,
+          "output_excerpt": "files need gofmt:\nhandlers.go:227:1: imports must appear before other declarations\nhandlers_test.go:210:1: imports must appear before other declarations",
+          "failure_category": "format",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "build",
+      "category": "compile_error",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007716917025391012,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "failed",
+          "duration": 0.4441038750228472,
+          "output_excerpt": "# webhook_relay\n./handlers.go:113:43: json.RawMessage(job.Payload).ToReader undefined (type \"encoding/json\".RawMessage has no field or method ToReader)\n./handlers.go:159:6: declared and not used: job\n./handlers.go:210:9: cannot define new methods on non-local type \"encoding/json\".RawMessage",
+          "failure_category": "compile_error",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "probe",
+      "category": "probe_health",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008025625022128224,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4341137090232223,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19466770795406774,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 1.4182426659972407,
+          "output_excerpt": "ok  \twebhook_relay\t0.961s",
+          "failure_category": null,
+          "detail": {
+            "tests": 7
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "failed",
+          "duration": 0.4419304169714451,
+          "output_excerpt": "service did not answer /health in time (exit=2)\npanic: pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/webhook-relay/t1/project/handlers.go:166) conflicts with pattern \"GET /health\" (registered at <repo>/runs/dev-3/nemotron-ultra/webhook-relay/t1/project/main.go:20):\n\tGET /health matches the same requests as GET /health\n\ngoroutine 1 [running]:\nnet/http.(*ServeMux).register(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2977\nnet/http.(*ServeMux).HandleFunc(0xb7a977e40c0?, {0x104733aa7?, 0xc?}, 0x104c9ebb8?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2951 +0x74\nmain.registerRoutes(0xb7a977e40c0)\n\t<repo>/runs/dev-3/nemotron-ultra/webhook-relay/t1/project/handlers.go:166 +0x40\nmain.newServer()\n\t<repo>/runs/dev-3/nemotron-ultra/webhook-relay/t1/project/main.go:25 +0x124\nmain.main()\n\t<repo>/runs/dev-3/nemotron-ultra/webhook-relay/t1/project/main.go:34 +0x40",
+          "failure_category": "probe_health",
+          "detail": {}
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

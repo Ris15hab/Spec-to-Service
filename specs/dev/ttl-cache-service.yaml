@@ -1,0 +1,22 @@
+name: ttl-cache-service
+description: An in-memory key-value cache where entries expire after a TTL.
+endpoints:
+  - { method: GET,    path: /health }
+  - { method: GET,    path: /metrics }
+  - { method: PUT,    path: "/cache/{key}", description: "body {value: string, ttl_seconds: int > 0}; 200 or 201 on success; 400 if value missing or ttl_seconds <= 0 or malformed JSON" }
+  - { method: GET,    path: "/cache/{key}", description: "200 {key, value}; 404 if absent or expired" }
+  - { method: DELETE, path: "/cache/{key}", description: "200 or 204 if deleted; 404 if absent" }
+metrics:
+  - { name: cache_entries, type: gauge, help: "Live (unexpired) entries" }
+  - { name: cache_hits_total, type: counter, help: "Successful reads" }
+  - { name: cache_misses_total, type: counter, help: "Reads of absent or expired keys" }
+behaviors:
+  - "Expiry is evaluated lazily on read AND by a background sweeper so cache_entries stays accurate"
+probes:
+  - { method: PUT,    path: /cache/k1, body: '{"value": "v", "ttl_seconds": 60}', expect_status: [200, 201] }
+  - { method: GET,    path: /cache/k1, expect_status: 200 }
+  - { method: GET,    path: /cache/nope, expect_status: 404 }
+  - { method: PUT,    path: /cache/k2, body: '{"ttl_seconds": 5}', expect_status: 400 }
+  - { method: PUT,    path: /cache/k3, body: '{"value": "v", "ttl_seconds": 0}', expect_status: 400 }
+  - { method: DELETE, path: /cache/k1, expect_status: [200, 204] }
+  - { method: GET,    path: /cache/k1, expect_status: 404 }

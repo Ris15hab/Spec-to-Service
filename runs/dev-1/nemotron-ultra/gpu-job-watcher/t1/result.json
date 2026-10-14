@@ -1,0 +1,222 @@
+{
+  "spec": "gpu-job-watcher",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": false,
+  "repairs_used": 3,
+  "first_failure_stage": "test",
+  "first_failure_category": "test_failure",
+  "final_failure_category": "test_failure",
+  "tokens_in": 9385,
+  "tokens_out": 6682,
+  "llm_time_s": 191.85,
+  "wall_time_s": 247.75,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.016352124977856874,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3689983320073225,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19398966600419953,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.8576063340296969,
+          "output_excerpt": "--- FAIL: TestGetJobs (0.00s)\n    handlers_test.go:63: failed to create job: 409\n--- FAIL: TestPostJobsDuplicateID (0.00s)\n    handlers_test.go:101: first request failed: 409\nFAIL\nFAIL\tgpu_job_watcher\t0.400s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": false,
+      "failed_stage": "vet",
+      "category": "vet",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.02281320799374953,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3893209169618785,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "failed",
+          "duration": 0.1850850410410203,
+          "output_excerpt": "# gpu_job_watcher\n# [gpu_job_watcher]\nvet: ./handlers_test.go:129:14: undefined: data",
+          "failure_category": "vet",
+          "detail": {}
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "kind": "repair2",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "timeout",
+      "note": null,
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.020653166982810944,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.3124482079874724,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19218308298150077,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 45.92686545901233,
+          "output_excerpt": "panic: test timed out after 45s\n\trunning tests:\n\t\tTestPostJobsDuplicateID (45s)\n\ngoroutine 25 [running]:\ntesting.(*M).startAlarm.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2961 +0x2c4\ncreated by time.goFunc\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/time/sleep.go:182 +0x38\n\ngoroutine 1 [chan receive]:\ntesting.(*T).Run(0x4e87ff762008, {0x104bbf722?, 0x4e87ff7f5a88?}, 0x1050a0058)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2268 +0x3cc\ntesting.runTests.func1(0x4e87ff762008)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2744 +0x38\ntesting.tRunner(0x4e87ff762008, 0x4e87ff7f5bb8)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ntesting.runTests({0x104bbae65, 0xf}, {0x104bbae65, 0xf}, 0x4e87ff74a2b8, {0x1050fe7b0, 0x4, 0x4}, {0x0?, 0x4e87ff714560?, ...})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2742 +0x400\ntesting.(*M).Run(0x4e87ff75e000)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2602 +0x578\nmain.main()\n\t_testmain.go:52 +0x80\n\ngoroutine 24 [runnable]:\ngpu_job_watcher.(*jsonBodyReader).Read(0x4e87ff714880?, {0x4e87ff76c300?, 0x40?, 0x40?})\n\t<repo>/runs/dev-1/nemotron-ultra/gpu-job-watcher/t1/project/handlers_test.go:125 +0xb8\nencoding/json/jsontext.(*decoderState).fetch(0x4e87ff769680)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/encoding/json/jsontext/decode.go:240 +0x350\nencoding/json/jsontext.(*decoderState).consumeWhitespace(0x4e87ff769680, 0x0?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/encoding/json/jsontext/decode.go:844 +0xa0\nencoding/json/jsontext.(*decoderState).ReadValue(0x4e87ff769680, 0x4e87ff71bcc0)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/encoding/json/jsontext/decode.go:702 +0x870\nencoding/json/jsontext.(*Decoder).ReadValue(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/encoding/json/jsontext/decode.go:679\nencoding/json.(*Decoder).Decode(0x4e87ff729170, {0x104fc1b40, 0x4e87ff729140})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/encoding/json/v2_stream.go:78 +0x48\ngpu_job_watcher.handlePostJobs({0x10509bbd0, 0x4e87ff74cd00}, 0x4e87ff769400)\n\t<repo>/runs/dev-1/nemotron-ultra/gpu-job-watcher/t1/project/handlers.go:35 +0x8c\nnet/http.HandlerFunc.ServeHTTP(0x4e87ff73c540?, {0x10509bbd0?, 0x4e87ff74cd00?}, 0x10483ca6c?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2358 +0x38\nnet/http.(*ServeMux).ServeHTTP(0x38?, {0x10509bbd0, 0x4e87ff74cd00}, 0x4e87ff769400)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2923 +0x194\ngpu_job_watcher.TestPostJobsDuplicateID(0x4e87ff762b48)\n\t<repo>/runs/dev-1/nemotron-ultra/gpu-job-watcher/t1/project/handlers_test.go:110 +0x300\ntesting.tRunner(0x4e87ff762b48, 0x1050a0058)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\tgpu_job_watcher\t45.443s\nFAIL",
+          "failure_category": "timeout",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "kind": "repair3",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "test_failure",
+      "note": null,
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.021105958032421768,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.328774333000183,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.18280987499747425,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 0.9018110000179149,
+          "output_excerpt": "--- FAIL: TestPostJobsDuplicateID (0.00s)\n    handlers_test.go:109: expected status 409 for duplicate, got 400\nFAIL\nFAIL\tgpu_job_watcher\t0.443s\nFAIL",
+          "failure_category": "test_failure",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 1
+}

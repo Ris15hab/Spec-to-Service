@@ -1,0 +1,154 @@
+{
+  "spec": "gpu-job-watcher",
+  "split": "dev",
+  "model": "nemotron-ultra",
+  "mock": false,
+  "pass_at_1": false,
+  "final_pass": true,
+  "repairs_used": 1,
+  "first_failure_stage": "test",
+  "first_failure_category": "timeout",
+  "final_failure_category": null,
+  "tokens_in": 4722,
+  "tokens_out": 4701,
+  "llm_time_s": 83.37,
+  "wall_time_s": 134.28,
+  "skipped": [],
+  "attempts": [
+    {
+      "n": 0,
+      "kind": "generate",
+      "ok": false,
+      "failed_stage": "test",
+      "category": "timeout",
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": false,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.008007958007510751,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4622584999888204,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.19878125004470348,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "failed",
+          "duration": 45.89743874996202,
+          "output_excerpt": "panic: test timed out after 45s\n\trunning tests:\n\t\tTestPostJobsSuccessReturns201 (45s)\n\ngoroutine 24 [running]:\ntesting.(*M).startAlarm.func1()\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2961 +0x2c4\ncreated by time.goFunc\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/time/sleep.go:182 +0x38\n\ngoroutine 1 [chan receive]:\ntesting.(*T).Run(0x57c69b362008, {0x10305ed4a?, 0x57c69b3f5a88?}, 0x10353c0e0)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2268 +0x3cc\ntesting.runTests.func1(0x57c69b362008)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2744 +0x38\ntesting.tRunner(0x57c69b362008, 0x57c69b3f5bb8)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ntesting.runTests({0x103056b1a, 0xf}, {0x103056b1a, 0xf}, 0x57c69b34a2b8, {0x10359a7b0, 0x4, 0x4}, {0x0?, 0x57c69b314580?, ...})\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2742 +0x400\ntesting.(*M).Run(0x57c69b35e000)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2602 +0x578\nmain.main()\n\t_testmain.go:52 +0x80\n\ngoroutine 23 [sync.Mutex.Lock]:\ninternal/sync.runtime_SemacquireMutex(0x103593d30?, 0xa8?, 0x8080808080808080?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/runtime/sema.go:95 +0x28\ninternal/sync.(*Mutex).lockSlow(0x57c69b3103b0)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/internal/sync/mutex.go:149 +0x174\ninternal/sync.(*Mutex).Lock(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/internal/sync/mutex.go:70\nsync.(*Mutex).Lock(...)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/sync/mutex.go:46\ngpu_job_watcher.updateMetrics(0x57c69b3103b0)\n\t<repo>/runs/dev-3/nemotron-ultra/gpu-job-watcher/t3/project/handlers.go:45 +0x78\ngpu_job_watcher.(*JobStore).Add(0x57c69b3103b0, 0x57c69b328780)\n\t<repo>/runs/dev-3/nemotron-ultra/gpu-job-watcher/t3/project/handlers.go:30 +0xe4\ngpu_job_watcher.registerRoutes.func1({0x103537c50, 0x57c69b34cb80}, 0x57c69b368640)\n\t<repo>/runs/dev-3/nemotron-ultra/gpu-job-watcher/t3/project/handlers.go:78 +0xd4\nnet/http.HandlerFunc.ServeHTTP(0x57c69b33c240?, {0x103537c50?, 0x57c69b34cb80?}, 0x102cd8a6c?)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2358 +0x38\nnet/http.(*ServeMux).ServeHTTP(0x38?, {0x103537c50, 0x57c69b34cb80}, 0x57c69b368640)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/net/http/server.go:2923 +0x194\ngpu_job_watcher.TestPostJobsSuccessReturns201(0x57c69b3626c8)\n\t<repo>/runs/dev-3/nemotron-ultra/gpu-job-watcher/t3/project/handlers_test.go:28 +0x12c\ntesting.tRunner(0x57c69b3626c8, 0x10353c0e0)\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2195 +0xc4\ncreated by testing.(*T).Run in goroutine 1\n\t/opt/homebrew/Cellar/go/1.27.2/libexec/src/testing/testing.go:2260 +0x3b8\nFAIL\tgpu_job_watcher\t45.455s\nFAIL",
+          "failure_category": "timeout",
+          "detail": {
+            "tests": 4
+          }
+        }
+      ]
+    },
+    {
+      "n": 1,
+      "kind": "repair1",
+      "ok": true,
+      "failed_stage": null,
+      "category": null,
+      "note": null,
+      "gofmt_fixed": [],
+      "fixed_previous": true,
+      "stages": [
+        {
+          "stage": "parse",
+          "status": "passed",
+          "duration": 0,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "format",
+          "status": "passed",
+          "duration": 0.007222959015052766,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "build",
+          "status": "passed",
+          "duration": 1.4899642910459079,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "vet",
+          "status": "passed",
+          "duration": 0.18502220796654,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "test",
+          "status": "passed",
+          "duration": 0.8288075420423411,
+          "output_excerpt": "ok  \tgpu_job_watcher\t0.384s",
+          "failure_category": null,
+          "detail": {
+            "tests": 4
+          }
+        },
+        {
+          "stage": "probe",
+          "status": "passed",
+          "duration": 0.4332408750196919,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "docs",
+          "status": "passed",
+          "duration": 0.0006606249953620136,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {}
+        },
+        {
+          "stage": "manifests",
+          "status": "passed",
+          "duration": 0.28867583302780986,
+          "output_excerpt": "",
+          "failure_category": null,
+          "detail": {
+            "skipped_tools": []
+          }
+        }
+      ]
+    }
+  ],
+  "trial": 3
+}

@@ -1,0 +1,9 @@
+{
+  "files": {
+    "specs/heldout/alert-rule-evaluator.yaml": "a7ba0c479cc5e031304176b0b64bf5954156d2acebc293731571889aaf8dc2a9",
+    "specs/heldout/artifact-registry-metadata.yaml": "e5347b2050834f34902482518f90a8fb6ff74ec91bff4034cf2f92006d8df002",
+    "specs/heldout/cluster-inventory-api.yaml": "269cbcf3218a7a84bd5dd572ef69068628d35817e8f7a72d270815ac1aac7d87",
+    "specs/heldout/rate-limiter-service.yaml": "a60403b0035cb6607b8dc043995cc4cab5440c8c1c5c55b055934a1e9f580a14",
+    "specs/heldout/task-scheduler-status-api.yaml": "1402e02ede21588c05f0929b0fa4900c13a86df52f188682e8b7d4c251d20dd3"
+  }
+}

@@ -1,0 +1,21 @@
+name: cluster-inventory-api
+description: Registers cluster nodes with labels and lists them filtered by label.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /nodes, description: "body {name: non-empty string, labels: {string:string}}; 201; 409 if name exists; 400 if name missing or malformed JSON" }
+  - { method: GET,  path: /nodes, description: "200 JSON list of nodes; optional query param label=key=value keeps only nodes whose labels contain that pair (repeatable: all must match); 400 if a label param has no '='" }
+  - { method: GET,  path: "/nodes/{name}", description: "200 one node; 404 if unknown" }
+metrics:
+  - { name: inventory_nodes, type: gauge, help: "Registered nodes" }
+  - { name: inventory_queries_total, type: counter, help: "List queries served" }
+behaviors:
+  - "Filtering with two label params returns only nodes matching both"
+probes:
+  - { method: POST, path: /nodes, body: '{"name": "n1", "labels": {"zone": "a", "gpu": "h100"}}', expect_status: 201 }
+  - { method: POST, path: /nodes, body: '{"name": "n1", "labels": {}}', expect_status: 409 }
+  - { method: POST, path: /nodes, body: '{"labels": {}}', expect_status: 400 }
+  - { method: GET,  path: "/nodes?label=zone=a", expect_status: 200 }
+  - { method: GET,  path: "/nodes?label=broken", expect_status: 400 }
+  - { method: GET,  path: /nodes/n1, expect_status: 200 }
+  - { method: GET,  path: /nodes/zzz, expect_status: 404 }

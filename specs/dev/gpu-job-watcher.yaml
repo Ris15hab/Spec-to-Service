@@ -1,0 +1,17 @@
+name: gpu-job-watcher
+description: Tracks GPU jobs in memory and exposes queue length and GPU utilization.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /jobs, description: "enqueue a job {id, gpus}; 201 on success" }
+  - { method: GET,  path: /jobs, description: "list jobs with status" }
+metrics:
+  - { name: gpu_job_queue_length, type: gauge, help: "Jobs waiting" }
+  - { name: gpu_utilization_percent, type: gauge, help: "Mean GPU utilization" }
+behaviors:
+  - "POST /jobs with missing id returns 400"
+  - "Queue length metric reflects the number of queued jobs"
+probes:
+  - { method: POST, path: /jobs, body: '{"gpus": 1}', expect_status: 400 }
+  - { method: POST, path: /jobs, body: '{"id": "j1", "gpus": 1}', expect_status: [200, 201] }
+  - { method: GET,  path: /jobs, expect_status: 200 }

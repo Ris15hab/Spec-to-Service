@@ -1,0 +1,16 @@
+name: config-diff
+description: Compares two flat configuration maps and returns a structured diff.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /diff, description: "body {old: {string:string}, new: {string:string}}. 200 {added:{k:v}, removed:{k:v}, changed:{k:{old:v, new:v}}}; 400 if old or new is missing or not an object" }
+metrics:
+  - { name: config_diffs_total, type: counter, help: "Diff requests served" }
+  - { name: config_diff_changes_last, type: gauge, help: "Number of differing keys in the most recent diff" }
+behaviors:
+  - "Identical configs produce empty added, removed and changed objects (not null)"
+  - "config_diff_changes_last equals added+removed+changed of the latest successful diff"
+probes:
+  - { method: POST, path: /diff, body: '{"old": {"a": "1", "b": "2"}, "new": {"a": "1", "c": "3"}}', expect_status: 200 }
+  - { method: POST, path: /diff, body: '{"old": {"a": "1"}}', expect_status: 400 }
+  - { method: POST, path: /diff, body: '{"old": "x", "new": {}}', expect_status: 400 }

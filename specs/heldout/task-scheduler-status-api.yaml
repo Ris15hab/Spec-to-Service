@@ -1,0 +1,21 @@
+name: task-scheduler-status-api
+description: Stores cron-like schedules and computes their next run time.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /schedules, description: "body {name: non-empty, cron: string}; 201; 409 if name exists; 400 for invalid cron or missing name. Supported cron: exactly 5 space-separated fields where fields 2-5 are '*' and the minute field is '*', '*/N' (N in 1..59) or an integer 0..59; anything else is invalid" }
+  - { method: GET,  path: /schedules, description: "200 JSON list of schedules" }
+  - { method: GET,  path: "/schedules/{name}/next", description: "query param from (RFC3339, required, else 400). 200 {next: RFC3339 UTC string} = the first matching minute strictly after `from` (seconds zeroed); 404 if schedule unknown" }
+metrics:
+  - { name: schedules_total, type: gauge, help: "Stored schedules" }
+  - { name: schedule_queries_total, type: counter, help: "Next-run computations served" }
+behaviors:
+  - "Example: cron '*/15 * * * *' with from 2026-01-01T00:07:00Z gives next 2026-01-01T00:15:00Z; cron '5 * * * *' with from 2026-01-01T00:05:00Z gives 2026-01-01T01:05:00Z"
+probes:
+  - { method: POST, path: /schedules, body: '{"name": "s1", "cron": "*/15 * * * *"}', expect_status: 201 }
+  - { method: POST, path: /schedules, body: '{"name": "s2", "cron": "bogus"}', expect_status: 400 }
+  - { method: POST, path: /schedules, body: '{"name": "s3", "cron": "61 * * * *"}', expect_status: 400 }
+  - { method: POST, path: /schedules, body: '{"name": "s1", "cron": "5 * * * *"}', expect_status: 409 }
+  - { method: GET,  path: "/schedules/s1/next?from=2026-01-01T00:07:00Z", expect_status: 200 }
+  - { method: GET,  path: "/schedules/s1/next", expect_status: 400 }
+  - { method: GET,  path: "/schedules/zzz/next?from=2026-01-01T00:07:00Z", expect_status: 404 }

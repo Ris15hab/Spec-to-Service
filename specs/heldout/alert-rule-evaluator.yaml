@@ -1,0 +1,20 @@
+name: alert-rule-evaluator
+description: Stores threshold alert rules and evaluates submitted metric values against them.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /rules, description: "body {name: non-empty, metric: non-empty, op: \">\" or \"<\", threshold: number}; 201; 400 for any invalid field or malformed JSON; 409 if name exists" }
+  - { method: GET,  path: /rules, description: "200 JSON list of rules" }
+  - { method: POST, path: /evaluate, description: "body {metric: string, value: number}; 200 {firing: [rule names]} listing every rule for that metric whose condition (value op threshold) holds, sorted by name; 400 if metric or value missing" }
+metrics:
+  - { name: alert_rules, type: gauge, help: "Defined rules" }
+  - { name: alerts_firing, type: gauge, help: "Rules firing in the most recent evaluation" }
+  - { name: alert_evaluations_total, type: counter, help: "Evaluations performed" }
+behaviors:
+  - "Rules for other metrics are ignored during evaluation"
+probes:
+  - { method: POST, path: /rules, body: '{"name": "hot", "metric": "temp", "op": ">", "threshold": 80}', expect_status: 201 }
+  - { method: POST, path: /rules, body: '{"name": "bad", "metric": "temp", "op": "=", "threshold": 1}', expect_status: 400 }
+  - { method: POST, path: /rules, body: '{"name": "hot", "metric": "temp", "op": ">", "threshold": 80}', expect_status: 409 }
+  - { method: POST, path: /evaluate, body: '{"metric": "temp", "value": 95}', expect_status: 200 }
+  - { method: POST, path: /evaluate, body: '{"metric": "temp"}', expect_status: 400 }

@@ -1,0 +1,23 @@
+name: rate-limiter-service
+description: A token-bucket rate limiter keyed by client.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /check, description: "body {key: non-empty string}. Each key has a bucket with capacity 5 that starts full and refills 1 token per second. 200 {allowed:true, remaining:n} and consume a token; 429 {allowed:false, remaining:0} when empty; 400 if key missing or malformed JSON" }
+  - { method: GET,  path: "/buckets/{key}", description: "200 {key, tokens: number}; 404 if the key has never been checked" }
+metrics:
+  - { name: ratelimit_allowed_total, type: counter, help: "Allowed checks" }
+  - { name: ratelimit_denied_total, type: counter, help: "Denied checks" }
+  - { name: ratelimit_buckets, type: gauge, help: "Known keys" }
+behaviors:
+  - "Buckets are independent per key; refill is computed from elapsed time with a mutex, no per-key goroutines"
+probes:
+  - { method: POST, path: /check, body: '{}', expect_status: 400 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 200 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 200 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 200 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 200 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 200 }
+  - { method: POST, path: /check, body: '{"key": "burst"}', expect_status: 429 }
+  - { method: GET,  path: /buckets/burst, expect_status: 200 }
+  - { method: GET,  path: /buckets/never-seen, expect_status: 404 }

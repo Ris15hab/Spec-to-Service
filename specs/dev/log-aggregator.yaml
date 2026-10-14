@@ -1,0 +1,18 @@
+name: log-aggregator
+description: Ingests log lines and counts them by level.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /logs, description: "body {level: info|warn|error, message: non-empty string}; 202 when accepted; 400 for bad level, empty message or malformed JSON" }
+  - { method: GET,  path: /logs/stats, description: "200 {counts: {info:n, warn:n, error:n}} with all three keys always present" }
+metrics:
+  - { name: log_lines_info_total, type: counter, help: "Info lines ingested" }
+  - { name: log_lines_warn_total, type: counter, help: "Warn lines ingested" }
+  - { name: log_lines_error_total, type: counter, help: "Error lines ingested" }
+behaviors:
+  - "Rejected lines are not counted"
+probes:
+  - { method: POST, path: /logs, body: '{"level": "info", "message": "started"}', expect_status: 202 }
+  - { method: POST, path: /logs, body: '{"level": "bogus", "message": "x"}', expect_status: 400 }
+  - { method: POST, path: /logs, body: '{"level": "error", "message": ""}', expect_status: 400 }
+  - { method: GET,  path: /logs/stats, expect_status: 200 }

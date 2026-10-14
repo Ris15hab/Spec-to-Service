@@ -1,0 +1,21 @@
+name: job-queue-api
+description: A FIFO job queue with enqueue, dequeue and acknowledge.
+endpoints:
+  - { method: GET,  path: /health }
+  - { method: GET,  path: /metrics }
+  - { method: POST, path: /jobs, description: "enqueue body {id: non-empty string, payload: any}; 201 on success; 409 if id already exists; 400 if id missing" }
+  - { method: POST, path: /jobs/dequeue, description: "200 with the oldest queued job {id, payload} and mark it in-flight; 204 if the queue is empty" }
+  - { method: POST, path: "/jobs/{id}/ack", description: "200 if the job was in-flight; 404 if unknown; 409 if it is not in-flight" }
+metrics:
+  - { name: queue_depth, type: gauge, help: "Jobs waiting (not in-flight)" }
+  - { name: jobs_enqueued_total, type: counter, help: "Jobs accepted" }
+  - { name: jobs_acked_total, type: counter, help: "Jobs acknowledged" }
+behaviors:
+  - "Dequeue order is first-in first-out"
+probes:
+  - { method: POST, path: /jobs, body: '{"id": "a", "payload": 1}', expect_status: 201 }
+  - { method: POST, path: /jobs, body: '{"id": "a", "payload": 1}', expect_status: 409 }
+  - { method: POST, path: /jobs, body: '{"payload": 1}', expect_status: 400 }
+  - { method: POST, path: /jobs/dequeue, body: '{}', expect_status: 200 }
+  - { method: POST, path: /jobs/a/ack, body: '{}', expect_status: 200 }
+  - { method: POST, path: /jobs/zzz/ack, body: '{}', expect_status: 404 }

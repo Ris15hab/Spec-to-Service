@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-queue-api
+  labels:
+    app: job-queue-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: job-queue-api
+  template:
+    metadata:
+      labels:
+        app: job-queue-api
+    spec:
+      containers:
+        - name: job-queue-api
+          image: job-queue-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 500m, memory: 128Mi}
